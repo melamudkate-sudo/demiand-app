@@ -25,3 +25,4 @@ html:has(.app-full){background:#191919;overscroll-behavior:none}
 
 .app-full:has(#app:not(.page-welcome)) .install-app{display:none}
 .app-full .guide-arrows{margin-bottom:max(20px,env(safe-area-inset-bottom))}
+.app-full{height:var(--app-height,100dvh)}

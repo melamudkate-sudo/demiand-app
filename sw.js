@@ -1,5 +1,5 @@
-const CACHE = 'demiand-app-v1';
-const CORE = ['./', './app.html', './studio.css', './app.css', './app-mode.css', './icons.js', './player.js', './app.js', './guided.js', './texture.js', './rear.js', './hardware.js', './editor.js', './studio.js', './app-mode.js', './manifest.webmanifest', './assets/montserrat.woff2', './assets/montserrat-semibold.woff2', './assets/unbounded.woff2', './assets/app-icon-192.png', './assets/app-icon-512.png'];
+const CACHE = 'demiand-app-v2';
+const CORE = ['./', './app.html', './studio.css', './app.css', './app-mode.css', './icons.js', './player.js', './app.js', './guided.js', './texture.js', './rear.js', './hardware.js', './android-rear.js', './editor.js', './studio.js', './app-mode.js', './manifest.webmanifest', './assets/montserrat.woff2', './assets/montserrat-semibold.woff2', './assets/unbounded.woff2', './assets/app-icon-192.png', './assets/app-icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });

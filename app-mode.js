@@ -33,3 +33,8 @@ if (appOnly) {
     if (state) { Object.assign(appState, JSON.parse(state)); renderApp(); }
   } catch (error) { console.error(error); }
 }
+if (appOnly && window.visualViewport) {
+  const resizeApp = () => document.body.style.setProperty('--app-height', window.visualViewport.height + 'px');
+  window.visualViewport.addEventListener('resize', resizeApp);
+  resizeApp();
+}
