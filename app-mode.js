@@ -2,6 +2,8 @@
 const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
 const appOnly = document.body.classList.contains('app-full');
 if (appOnly) {
+  // The real-device app lives directly in the viewport, outside the 3D studio.
+  document.body.prepend(document.querySelector('#app'));
   scene.mode = 'interact';
   document.documentElement.lang = 'en';
   document.querySelector('meta[name="theme-color"]').content = '#191919';
@@ -33,15 +35,33 @@ if (appOnly) {
     if (state) { Object.assign(appState, JSON.parse(state)); renderApp(); }
   } catch (error) { console.error(error); }
 }
-// Keep the installed app sized by CSS. iOS may report an obsolete visual
-// viewport during launch. Its height is useful only while an input is focused.
+// Installed iPhone web apps can retain Safari's shorter dynamic viewport.
+// Use the physical screen's CSS size in standalone mode and the browser's
+// layout viewport in Safari. Never inherit a height from the 3D preview.
+if (appOnly) {
+  const syncAppViewport = () => {
+    let height = window.innerHeight;
+    if (standalone && /iPhone/.test(navigator.userAgent)) {
+      const landscape = window.matchMedia('(orientation: landscape)').matches;
+      const screenHeight = landscape ? Math.min(screen.width, screen.height) : Math.max(screen.width, screen.height);
+      height = Math.max(height, screenHeight);
+    }
+    document.body.style.setProperty('--app-viewport-height', height + 'px');
+  };
+  syncAppViewport();
+  window.addEventListener('resize', syncAppViewport);
+  window.addEventListener('pageshow', syncAppViewport);
+  window.addEventListener('orientationchange', () => requestAnimationFrame(syncAppViewport));
+}
+// The visual viewport is used only to make room for an input keyboard.
 if (appOnly && window.visualViewport) {
   const syncKeyboard = () => {
     const field = document.activeElement;
     const editing = field instanceof HTMLTextAreaElement ||
       (field instanceof HTMLInputElement && ['text', 'search', 'email', 'tel', 'url', 'password', 'number'].includes(field.type));
     const viewport = window.visualViewport;
-    const keyboardOpen = editing && viewport.scale === 1 && window.innerHeight - viewport.height > 140;
+    const appHeight = parseFloat(document.body.style.getPropertyValue('--app-viewport-height')) || window.innerHeight;
+    const keyboardOpen = editing && viewport.scale === 1 && appHeight - viewport.height > 140;
     document.body.classList.toggle('keyboard-open', keyboardOpen);
     if (keyboardOpen) document.body.style.setProperty('--keyboard-height', viewport.height + 'px');
     else document.body.style.removeProperty('--keyboard-height');

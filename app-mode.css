@@ -47,3 +47,8 @@ html:has(.app-full){background:#191919;overscroll-behavior:none}
 .app-full .appnav{bottom:max(10px,calc(env(safe-area-inset-bottom) - 14px))}
 .app-full .profile-button{padding-bottom:7px}
 .app-full .profile-button small{font-size:12px}
+
+/* App mode has its own viewport root, independent of the studio stage. */
+.app-full .workspace{display:none!important}
+.app-full>#app{position:fixed;inset:0;width:100%!important;height:var(--app-viewport-height,100%)!important;margin:0;border-radius:0}
+.app-full.keyboard-open>#app{height:var(--keyboard-height)!important;bottom:auto}
