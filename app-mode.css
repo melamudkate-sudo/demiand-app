@@ -1,15 +1,17 @@
 .launch-app{display:inline-flex;align-items:center;text-decoration:none;background:#d74726;color:white;padding:10px 15px;border-radius:9px;font-size:14px;font-weight:600;margin-left:auto;margin-right:12px}
-html:has(.app-full){background:#191919;overscroll-behavior:none}
-.app-full{background:#191919;color:white;overflow:hidden;overscroll-behavior:none;height:100dvh}
-.app-full>.top,.app-full .view-head,.app-full .viewport-footer,.app-full .inspector,.app-full .stage-grid,.app-full .stage-corner,.app-full .stage-label,.app-full #hardware{display:none!important}
-.app-full .workspace,.app-full .preview-pane{display:block;width:100%;height:100%;min-height:0;max-width:none;margin:0;padding:0}
-.app-full #stage{position:relative;width:100%;height:100%;max-height:none;min-height:0;border:0;border-radius:0;background:#191919!important;touch-action:auto;cursor:auto}
-.app-full #phone,.app-full #screen{position:absolute;inset:0!important;width:100%!important;height:100%!important;zoom:1!important;transform:none!important;border-radius:0!important;pointer-events:auto!important;visibility:visible!important;display:block!important}
-.app-full #app{width:100%!important;height:100%!important;zoom:1!important;transform:none!important}
+html:has(.app-full){background:#191919;color-scheme:dark;overflow:hidden;overscroll-behavior:none}
+.app-full{margin:0;background:#191919;color:white;overflow:hidden;overscroll-behavior:none}
+.app-full>.top,.app-full>.workspace{display:none!important}
+.app-full>#app{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  height:var(--app-viewport-height,100dvh);
+}
 .app-full .statusbar{height:max(12px,env(safe-area-inset-top));padding:0}
 .app-full .statusbar>*{display:none}
 .app-full .page-recipe>.statusbar,.app-full .page-video>.statusbar,.app-full .page-welcome>.statusbar{height:max(12px,env(safe-area-inset-top))}
-.app-full .appnav{bottom:max(10px,env(safe-area-inset-bottom));height:68px}
+.app-full .appnav{bottom:max(10px,calc(env(safe-area-inset-bottom) - 14px));height:68px}
 .app-full .appscroll{padding-bottom:calc(100px + env(safe-area-inset-bottom))}
 .app-full .detail-scroll{padding-bottom:calc(175px + env(safe-area-inset-bottom))}
 .app-full .detail-actions{bottom:calc(86px + env(safe-area-inset-bottom))}
@@ -25,9 +27,6 @@ html:has(.app-full){background:#191919;overscroll-behavior:none}
 
 .app-full:has(#app:not(.page-welcome)) .install-app{display:none}
 .app-full .guide-arrows{margin-bottom:max(20px,env(safe-area-inset-bottom))}
-.app-full{position:fixed;inset:0;width:100%;height:100dvh}
-
-.app-full.keyboard-open{height:var(--keyboard-height);bottom:auto}
 .app-full .app-brand{height:95px}
 .app-full .appliances{margin-bottom:10px}
 .app-full .appliances button{min-height:54px}
@@ -36,19 +35,10 @@ html:has(.app-full){background:#191919;overscroll-behavior:none}
 .app-full .in-search input::placeholder{color:#aaa;opacity:1}
 .app-full .filter-rail{margin-top:15px}
 .app-full .sticky-search{padding-bottom:14px}
-.app-full .video-shelf{margin-top:20px}
+.app-full .video-shelf{margin-top:20px;padding-top:5px}
 .app-full .video-tile{flex-basis:160px;height:250px}
-.app-full .video-shelf header{padding-bottom:7px}
-.app-full .fresh{background:linear-gradient(125deg,#a55212,#a41922);box-shadow:0 0 6px #e7a139aa,inset 0 0 4px #e7a13988}
-.app-full .profile-button{border-radius:17px 17px 9px 9px}
-/* Match the original recipe shelf and home-indicator spacing. */
-.app-full .video-shelf{padding-top:5px}
 .app-full .video-shelf header{padding-bottom:3px}
-.app-full .appnav{bottom:max(10px,calc(env(safe-area-inset-bottom) - 14px))}
-.app-full .profile-button{padding-bottom:7px}
-.app-full .profile-button small{font-size:12px}
-
-/* App mode has its own viewport root, independent of the studio stage. */
-.app-full .workspace{display:none!important}
-.app-full>#app{position:fixed;inset:0;width:100%!important;height:var(--app-viewport-height,100%)!important;margin:0;border-radius:0}
-.app-full.keyboard-open>#app{height:var(--keyboard-height)!important;bottom:auto}
+.app-full .fresh{background:linear-gradient(125deg,#a55212,#a41922);box-shadow:0 0 6px #e7a139aa,inset 0 0 4px #e7a13988}
+.app-full .profile-button{border-radius:17px 17px 9px 9px;padding-bottom:7px}
+.app-full .demi-head small{font-weight:600}
+.app-full .appnav small{font-size:clamp(10px,3.3vw,13px)}
