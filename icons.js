@@ -1,0 +1,14 @@
+const paths={
+ book:'<path d="M3 5q5-2 9 1 4-3 9-1v14q-5-2-9 1-4-3-9-1zM12 6v14"/>',
+ expand:'<path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/>',
+ pointer:'<path d="m5 3 14 10-7 1-3 7z"/>',orbit:'<ellipse cx="12" cy="12" rx="11" ry="5" transform="rotate(-37 12 12)"/><circle cx="12" cy="12" r="3"/>',
+ sliders:'<path d="M3 7h6m4 0h8M3 17h10m4 0h4"/><circle cx="11" cy="7" r="2"/><circle cx="15" cy="17" r="2"/>',pen:'<path d="m4 16 12-12 4 4L8 20l-5 1zM14 6l4 4"/>',reset:'<path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/>',
+ drive:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 14h18m-5 2h2"/>',download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',close:'<path d="m6 6 12 12M18 6 6 18"/>',
+ search:'<circle cx="10" cy="10" r="6"/><path d="m15 15 6 6"/>',bookmark:'<path d="M6 3h12v18l-6-4-6 4z"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2z"/>',down:'<path d="m6 9 6 6 6-6"/>',left:'<path d="m15 4-8 8 8 8"/>',right:'<path d="m9 4 8 8-8 8"/>',check:'<path d="m4 12 5 5L20 6"/>',plus:'<path d="M12 4v16M4 12h16"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',play:'<path fill="currentColor" d="m7 4 13 8-13 8z"/>',pause:'<path d="M8 4v16m8-16v16"/>',heart:'<path d="M12 21 3 12C-1 4 8 0 12 7c4-7 13-3 9 5z"/>',message:'<path d="M21 11a9 9 0 0 1-12 9l-6 1 1-6a9 9 0 1 1 17-4z"/>',
+ share:'<path d="M12 15V2m-5 5 5-5 5 5M5 12v8h14v-8"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h1m-1 6h1m-1 6h1"/>',send:'<path d="m4 3 17 9-17 9 3-9zM7 12h13"/>',camera:'<path d="M3 7h5l2-3h4l2 3h5v13H3z"/><circle cx="12" cy="13" r="4"/>',wifi:'<path d="M2 9a16 16 0 0 1 20 0M5 12a11 11 0 0 1 14 0M8 15a6 6 0 0 1 8 0"/><circle cx="12" cy="18" r="1"/>',
+ spark:'<path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z"/>',cube:'<path d="m12 2 9 5v10l-9 5-9-5V7zM3 7l9 5 9-5m-9 5v10"/>',image:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="m4 17 5-6 4 4 3-3 5 5"/><circle cx="16" cy="8" r="1"/>',flame:'<path d="M13 2c2 8 8 8 6 15-2 7-14 6-14-2 0-4 3-6 4-8 0 3 2 4 2 4s3-4 2-9z"/>',mic:'<rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3"/>',attach:'<path d="m7 14 7-7a3 3 0 0 1 4 4l-8 8a5 5 0 0 1-7-7l9-9"/>',plususer:'<circle cx="9" cy="8" r="4"/><path d="M2 21v-3c0-6 14-6 14 0v3zm17-14v8m-4-4h8"/>',bag:'<path d="M4 7h16l1 14H3zM8 8V6a4 4 0 0 1 8 0v2"/>',hand:'<path d="M8 13V5a2 2 0 0 1 4 0v7-8a2 2 0 0 1 4 0v8-5a2 2 0 0 1 4 0v9c0 9-10 9-13 4l-4-6c-1-3 2-4 5-1z"/>'};
+function icon(name){return '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.cube)+'</svg>'}
+document.querySelectorAll('[data-icon]').forEach(i=>i.outerHTML=icon(i.dataset.icon));
+const $=selector=>document.querySelector(selector);
+const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
