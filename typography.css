@@ -1,0 +1,59 @@
+@font-face {
+  font-family: Inter;
+  src: url('assets/inter-full.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Unbounded;
+  src: url('assets/unbounded-full.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root { font-family: Inter, Arial, sans-serif; }
+.app-root {
+  font-family: Inter, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  --red: #ee252c;
+}
+.app-root h1, .app-root h2, .app-root h3, .app-root h4 {
+  font-family: Unbounded, Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+.app-root h1 { font-size: 24px; }
+.app-root h2 { font-size: 20px; }
+.app-root h3 { font-size: 16px; }
+.app-root h4 { font-size: 14px; }
+.app-root p { font-family: Inter, Arial, sans-serif; font-size: 16px; font-weight: 400; }
+.app-root b, .app-root strong { font-weight: 700; }
+.app-root small { font-family: Inter, Arial, sans-serif; font-size: 12px; font-weight: 400; }
+.app-root input, .app-root textarea { font-family: Inter, Arial, sans-serif; font-weight: 400; }
+.app-root .in-search input { font-size: 16px; }
+.app-root .appnav small { font-family: Inter, Arial, sans-serif; font-size: 13px; font-weight: 500; }
+.app-root .appnav .selected small { font-weight: 700; }
+.app-root .appliances button, .app-root .filter-rail button, .app-root .option-cloud button,
+.app-root .profile-button small, .app-root .fresh { font-family: Inter, Arial, sans-serif; font-size: 13px; font-weight: 500; }
+.app-root .appliances b { font-weight: 500; }
+.app-root .cover-button strong, .app-root .recipe-tile strong { font-family: Inter, Arial, sans-serif; font-size: 16px; font-weight: 700; }
+.app-root .recipe-tile small { font-size: 12px; font-weight: 400; }
+.app-root .reply-cards .recipe-tile strong { font-family: Inter, Arial, sans-serif; font-size: 13px; font-weight: 700; }
+.app-root .step-instruction { font: 500 24px/1.42 Inter, Arial, sans-serif; }
+.app-root .prep-row { font: 400 20px/1.3 Inter, Arial, sans-serif; }
+.app-root .prep-row b, .app-root .prep-row strong { font-weight: 500; }
+.app-root .demi-head h2 { font-family: Unbounded, Arial, sans-serif; font-size: 24px; font-weight: 400; }
+.app-root .demi-head small { font-size: 12px; }
+.app-root .app-header h2, .app-root .cook-head h2 { font-size: 20px; }
+.app-root .device-tile b, .app-root .sheet-row { font-size: 13px; font-weight: 500; }
+.app-root .promo b, .app-root .product-title { font-family: Inter, Arial, sans-serif; font-size: 20px; font-weight: 700; }
+.app-root .app-sheet .muted, .app-root .rating, .app-root .post header b, .app-root .post header small { font-size: 13px; }
+.app-root .post header b { font-weight: 700; }
+.app-root .post footer button, .app-root .nutrition small { font-size: 12px; font-weight: 400; }
+.app-root .muted { font-size: 12px; }
+.app-root a { color: #ee252c; }
+.app-root .welcome h2 { font-family: Unbounded, Arial, sans-serif; font-weight: 400; }
