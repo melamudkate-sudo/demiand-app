@@ -1,5 +1,5 @@
-const CACHE = 'demiand-app-v2';
-const CORE = ['./', './app.html', './studio.css', './app.css', './app-mode.css', './icons.js', './player.js', './app.js', './guided.js', './texture.js', './rear.js', './hardware.js', './android-rear.js', './editor.js', './studio.js', './app-mode.js', './manifest.webmanifest', './assets/montserrat.woff2', './assets/montserrat-semibold.woff2', './assets/unbounded.woff2', './assets/app-icon-192.png', './assets/app-icon-512.png'];
+const CACHE = 'demiand-app-v3';
+const CORE = ['./', './app.html', './studio.css', './app.css', './app-mode.css?v=3', './icons.js', './player.js', './app.js?v=3', './guided.js', './texture.js', './rear.js', './hardware.js', './android-rear.js', './editor.js', './studio.js', './app-mode.js?v=3', './manifest.webmanifest', './assets/montserrat.woff2', './assets/montserrat-semibold.woff2', './assets/unbounded.woff2', './assets/app-icon-192.png', './assets/app-icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting()));
 });
@@ -12,7 +12,7 @@ self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     try {
-      const response = await fetch(request);
+      const response = await fetch(request, {cache: 'no-cache'});
       if (response.ok) await cache.put(request, response.clone());
       return response;
     } catch (error) {

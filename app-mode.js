@@ -20,7 +20,7 @@ if (appOnly) {
   }
 }
 if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error));
+  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'}).catch(console.error));
 }
 const launchApp = document.querySelector('.launch-app');
 if (launchApp) launchApp.addEventListener('click', () => {
@@ -33,8 +33,20 @@ if (appOnly) {
     if (state) { Object.assign(appState, JSON.parse(state)); renderApp(); }
   } catch (error) { console.error(error); }
 }
+// Keep the installed app sized by CSS. iOS may report an obsolete visual
+// viewport during launch. Its height is useful only while an input is focused.
 if (appOnly && window.visualViewport) {
-  const resizeApp = () => document.body.style.setProperty('--app-height', window.visualViewport.height + 'px');
-  window.visualViewport.addEventListener('resize', resizeApp);
-  resizeApp();
+  const syncKeyboard = () => {
+    const field = document.activeElement;
+    const editing = field instanceof HTMLTextAreaElement ||
+      (field instanceof HTMLInputElement && ['text', 'search', 'email', 'tel', 'url', 'password', 'number'].includes(field.type));
+    const viewport = window.visualViewport;
+    const keyboardOpen = editing && viewport.scale === 1 && window.innerHeight - viewport.height > 140;
+    document.body.classList.toggle('keyboard-open', keyboardOpen);
+    if (keyboardOpen) document.body.style.setProperty('--keyboard-height', viewport.height + 'px');
+    else document.body.style.removeProperty('--keyboard-height');
+  };
+  window.visualViewport.addEventListener('resize', syncKeyboard);
+  document.addEventListener('focusin', syncKeyboard);
+  document.addEventListener('focusout', () => requestAnimationFrame(syncKeyboard));
 }

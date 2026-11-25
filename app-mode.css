@@ -25,4 +25,25 @@ html:has(.app-full){background:#191919;overscroll-behavior:none}
 
 .app-full:has(#app:not(.page-welcome)) .install-app{display:none}
 .app-full .guide-arrows{margin-bottom:max(20px,env(safe-area-inset-bottom))}
-.app-full{height:var(--app-height,100dvh)}
+.app-full{position:fixed;inset:0;width:100%;height:100dvh}
+
+.app-full.keyboard-open{height:var(--keyboard-height);bottom:auto}
+.app-full .app-brand{height:95px}
+.app-full .appliances{margin-bottom:10px}
+.app-full .appliances button{min-height:54px}
+.app-full .appliances .selected{background:linear-gradient(150deg,#393939 8%,#878787 35%,#444 62%,#292929);border-color:#ddd;box-shadow:inset 0 0 3px #fff8,0 0 3px #fff5}
+.app-full .in-search{height:40px}
+.app-full .in-search input::placeholder{color:#aaa;opacity:1}
+.app-full .filter-rail{margin-top:15px}
+.app-full .sticky-search{padding-bottom:14px}
+.app-full .video-shelf{margin-top:20px}
+.app-full .video-tile{flex-basis:160px;height:250px}
+.app-full .video-shelf header{padding-bottom:7px}
+.app-full .fresh{background:linear-gradient(125deg,#a55212,#a41922);box-shadow:0 0 6px #e7a139aa,inset 0 0 4px #e7a13988}
+.app-full .profile-button{border-radius:17px 17px 9px 9px}
+/* Match the original recipe shelf and home-indicator spacing. */
+.app-full .video-shelf{padding-top:5px}
+.app-full .video-shelf header{padding-bottom:3px}
+.app-full .appnav{bottom:max(10px,calc(env(safe-area-inset-bottom) - 14px))}
+.app-full .profile-button{padding-bottom:7px}
+.app-full .profile-button small{font-size:12px}
