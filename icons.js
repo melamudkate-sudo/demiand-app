@@ -1,4 +1,8 @@
 const paths={
+ cooking:'<path fill="currentColor" stroke="none" d="M2 9.5h20c-.45 4.3-3.25 7.8-7.15 9.05l.9 2.45h-7.5l.9-2.45C5.18 17.3 2.48 13.72 2 9.5Z"/><path d="m13 7.3 6.6-4.6" stroke-width="3.2"/>',
+ child:'<circle cx="5.5" cy="6.5" r="3.2"/><circle cx="18.5" cy="6.5" r="3.2"/><ellipse cx="12" cy="13" rx="8" ry="7.5"/><path d="M8.8 12h.1m6.2 0h.1m-4.6 3h2.8L12 16.4Z"/>',
+ like:'<path d="M3 10h4v11H3zm4 1 5-8c2-1 3 1 2.5 3l-.8 4H20c1.3 0 1.9 1 1.6 2.3l-1.7 7c-.2 1-1.1 1.7-2.1 1.7h-7L7 19"/>',
+ dislike:'<g transform="rotate(180 12 12)"><path d="M3 10h4v11H3zm4 1 5-8c2-1 3 1 2.5 3l-.8 4H20c1.3 0 1.9 1 1.6 2.3l-1.7 7c-.2 1-1.1 1.7-2.1 1.7h-7L7 19"/></g>',
  book:'<path d="M3 5q5-2 9 1 4-3 9-1v14q-5-2-9 1-4-3-9-1zM12 6v14"/>',
  expand:'<path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/>',
  pointer:'<path d="m5 3 14 10-7 1-3 7z"/>',orbit:'<ellipse cx="12" cy="12" rx="11" ry="5" transform="rotate(-37 12 12)"/><circle cx="12" cy="12" r="3"/>',

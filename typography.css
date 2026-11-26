@@ -83,3 +83,17 @@
 .app-root .filter-rail button{color:#aaa;font-weight:600}
 .app-root .filter-rail .chosen{color:white}
 .app-root .in-search input{font-weight:600}
+
+.library-ingredient{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid #383838}
+.library-ingredient>span{flex:1}.library-ingredient>strong{max-width:55%;font-weight:500;text-align:right}
+.library-ingredient input{flex:none;align-self:center}
+.library-copy{white-space:pre-line}
+.step-card .library-step-photo{display:block;height:auto;max-height:330px;object-fit:contain}
+.guided-body .library-ingredient{font:500 20px/1.3 Inter,sans-serif}
+
+.app-root .detail-actions button,.app-root .fresh{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.app-root .detail-actions .ico{width:17px;height:17px;flex:none}
+.app-root .fresh .ico{width:14px;height:14px;color:#ff9c43;fill:currentColor}
+.app-root .verified{display:inline-grid;place-items:center;width:13px;height:13px;padding:0}
+.app-root .verified .ico{width:10px;height:10px;stroke-width:3}
+.app-root .rating-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
