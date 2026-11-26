@@ -1,10 +1,15 @@
 // Both entry points share the app and its browser-local content store.
 const standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
 const appOnly = document.body.classList.contains('app-full');
+let launchTimer;
+function scheduleLaunch(){
+  clearTimeout(launchTimer);
+  launchTimer=setTimeout(()=>{if(appState.page==='Welcome')acts.enter()},1800);
+}
 if (appOnly) {
-  // The real-device app lives directly in the viewport, outside the 3D studio.
-  document.body.prepend(document.querySelector('#app'));
-  scene.mode = 'interact';
+  document.documentElement.classList.toggle('installed', !!standalone);
+  renderApp();
+  dbReady.then(()=>{if(overrides.size)renderApp(true)}).catch(console.error);
   document.documentElement.lang = 'en';
   document.querySelector('meta[name="theme-color"]').content = '#191919';
   if (!standalone) {
@@ -18,6 +23,12 @@ if (appOnly) {
     help.innerHTML = '<h2>DEMIAND на домашнем экране</h2><p>Откройте эту страницу в Safari на iPhone. Нажмите «Поделиться», затем «На экран Домой». Включите «Открывать как веб-приложение», если этот пункт отображается, и нажмите «Добавить».</p><p>Иконка DEMIAND будет открывать приложение на весь экран.</p><p><a href="./">Вернуться в студию</a></p><button autofocus>Понятно</button>';
     document.body.append(help);
     install.onclick = () => help.showModal();
+    acts.openFullscreen=async()=>{
+      if(document.fullscreenEnabled){
+        try{await document.documentElement.requestFullscreen();return}catch{}
+      }
+      help.showModal();
+    };
     help.querySelector('button').onclick = () => help.close();
   }
 }
@@ -35,20 +46,19 @@ if (appOnly) {
     if (state) { Object.assign(appState, JSON.parse(state)); renderApp(); }
   } catch (error) { console.error(error); }
 }
-if (appOnly) {
-  const viewport = window.visualViewport;
-  const syncAppViewport = () => {
-    // iOS can expose a web viewport shorter than the physical screen.
-    // Keep the app and its navigation within the surface WebKit can display.
-    const layoutHeight = document.documentElement.clientHeight || window.innerHeight;
-    const visibleHeight = viewport && Math.abs(viewport.scale - 1) < 0.01
-      ? viewport.height
-      : layoutHeight;
-    const height = Math.floor(Math.min(layoutHeight, visibleHeight || layoutHeight));
-    document.body.style.setProperty('--app-viewport-height', height + 'px');
+// Browser chrome and rotation resize the CSS viewport. Only a focused editor
+// needs the smaller visual viewport when the software keyboard covers the page.
+if (appOnly && window.visualViewport) {
+  const syncKeyboard = () => {
+    const view = visualViewport;
+    const textEntry = document.activeElement?.matches('input:not([type=range]):not([type=checkbox]),textarea');
+    if (textEntry && Math.abs(view.scale - 1) < .01 && innerHeight - view.height > 100) {
+      document.body.style.setProperty('--keyboard-height', Math.round(view.height) + 'px');
+    } else {
+      document.body.style.removeProperty('--keyboard-height');
+    }
   };
-  syncAppViewport();
-  window.addEventListener('resize', syncAppViewport);
-  window.addEventListener('pageshow', syncAppViewport);
-  viewport?.addEventListener('resize', syncAppViewport);
+  visualViewport.addEventListener('resize', syncKeyboard);
+  window.addEventListener('pageshow', syncKeyboard);
+  document.addEventListener('focusout', () => requestAnimationFrame(syncKeyboard));
 }

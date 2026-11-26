@@ -1,5 +1,3 @@
-let noticeTimer;
-function toast(message){$('#notice').textContent=message;$('#notice').classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').classList.remove('show'),2600)}
 function saveScene(){persist('scene',{model:scene.model,finish:scene.finish,bg:scene.bg,yaw:scene.yaw,pitch:scene.pitch,roll:scene.roll,zoom:scene.zoom,screenOnly:scene.screenOnly})}
 function updateControls(){const m=model();$('#models').innerHTML=models.map((m,i)=>`<button title="${m.name}" aria-label="${m.name}" aria-pressed="${i===scene.model}" data-model="${i}" class="model-card ${i===scene.model?'active':''}"><span class="mini-phone ${m.id}"></span><span>${m.short}</span></button>`).join('');
  function swatches(sel,values,k){$(sel).innerHTML=values.map(([name,col],i)=>`<button aria-label="${name}" title="${name}" aria-pressed="${scene[k]===i}" style="--swatch:${col}" data-${k}="${i}" class="swatch ${col==='transparent'?'checker':''} ${scene[k]===i?'active':''}"></button>`).join('')}

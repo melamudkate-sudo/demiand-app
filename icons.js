@@ -12,3 +12,6 @@ function icon(name){return '<svg class="ico" viewBox="0 0 24 24" fill="none" str
 document.querySelectorAll('[data-icon]').forEach(i=>i.outerHTML=icon(i.dataset.icon));
 const $=selector=>document.querySelector(selector);
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let noticeTimer;
+function toast(message){$('#notice').textContent=message;$('#notice').classList.add('show');clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('#notice').classList.remove('show'),2600)}

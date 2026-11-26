@@ -42,3 +42,40 @@ html:has(.app-full){background:#191919;color-scheme:dark;overflow:hidden;overscr
 .app-full .profile-button{border-radius:17px 17px 9px 9px;padding-bottom:7px}
 .app-full .demi-head small{font-weight:600}
 .app-full .appnav small{font-size:clamp(10px,3.3vw,13px)}
+
+/* The phone entry has its own document and never mounts the studio canvas. */
+html.phone-app{min-height:100%;background:#191919;color-scheme:dark;-webkit-text-size-adjust:100%}
+.phone-app *, .phone-app *::before,.phone-app *::after{box-sizing:border-box}
+.phone-app body{min-height:100%;font-family:Inter,Arial,sans-serif}
+.phone-app button,.phone-app input,.phone-app textarea,.phone-app select{font:inherit;color:inherit}
+:where(.phone-app) button{border:0;background:none;cursor:pointer}.phone-app button:disabled{opacity:.55}
+.phone-app .ico{width:18px;height:18px;flex-shrink:0;vertical-align:middle}
+.phone-app #app{width:100%;height:100vh;height:var(--keyboard-height,100dvh);background:#191919}
+.phone-app.installed,.phone-app.installed body{height:100lvh;min-height:100%;margin:0}
+.phone-app.installed #app{height:var(--keyboard-height,100%)}
+.app-full .statusbar{background:#191919;height:env(safe-area-inset-top,0px);box-shadow:none;filter:none;backdrop-filter:none}
+.app-full .appnav{bottom:max(10px,calc(env(safe-area-inset-bottom) - 12px));background:#191919;box-shadow:none}
+.app-full #notice{position:fixed;left:50%;transform:translateX(-50%);max-width:90%;padding:10px 14px;z-index:30;border-radius:10px;opacity:0;pointer-events:none}
+.app-full #notice.show{opacity:1}
+.app-full .demi-head,.app-full .app-header{background:#191919;box-shadow:none;filter:none}
+.app-full .cooked-banner{top:calc(env(safe-area-inset-top) + 16px)}
+/* Let Safari scroll long feeds as a document so that its toolbar can collapse.
+   The installed app and short, keyboard-driven views keep one internal scroller. */
+.phone-app:not(.installed):is([data-page=Demigram],[data-page=Recipes]),
+.phone-app:not(.installed):is([data-page=Demigram],[data-page=Recipes]) body{overflow:visible}
+.phone-app:not(.installed) #app:is(.page-demigram,.page-recipes){height:auto;min-height:100dvh;overflow:visible}
+.phone-app:not(.installed) :is(.page-demigram,.page-recipes)>.appscroll{overflow:visible;flex:none}
+.phone-app:not(.installed) :is(.page-demigram,.page-recipes)>.appnav{position:fixed}
+.phone-app:not(.installed) .page-demigram>.demi-head{position:sticky;top:env(safe-area-inset-top);z-index:5}
+
+.phone-app.installed .appnav{position:fixed}
+.phone-app .statusbar,.phone-app .page-welcome>.statusbar,.phone-app .page-video>.statusbar,.phone-app .page-recipe>.statusbar{height:env(safe-area-inset-top,0px);background:#191919}
+.app-root .native-launch{position:absolute;inset:0;display:grid;place-items:center;width:100%;height:100%;background:#191919}
+.native-launch img{width:46%;max-width:215px;mix-blend-mode:lighten}
+.daily-story{position:absolute;inset:0;display:grid;align-items:end;background:#171717}
+.daily-story>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.daily-story>div{position:relative;background:linear-gradient(transparent,#101010ed 35%);padding:80px 18px max(34px,env(safe-area-inset-bottom))}
+.app-root .daily-story a{display:block;text-decoration:none;color:#161616;background:white;font-weight:700}
+
+.phone-app:not(.installed) :is(.page-demigram,.page-recipes)>.sheet-overlay{position:fixed;inset:0;overscroll-behavior:contain}
+.phone-app:not(.installed):has(:is(.page-demigram,.page-recipes)>.sheet-overlay){overflow:hidden}
